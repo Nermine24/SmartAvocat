@@ -1,0 +1,55 @@
+<div id="about" class="p-24" fxLayout="row wrap">
+
+    <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+
+        <div class="profile-box info-box general" fxLayout="column">
+
+            <header class="accent">
+                <div class="title">Informations générales</div>
+            </header>
+
+            <div class="content">
+                <div class="info-line">
+                    <div class="title">Genre</div>
+                    <div class="info">{{sexe}}</div>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Date de naissance</div>
+                    <div class="info">{{daten | date:'longDate'}}</div>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Localisation</div>
+                    <div class="info location" fxLayout="row" fxLayoutAlign="start center">
+                        <span><b>Pays</b> {{country}}</span>&nbsp;&nbsp;
+                        <span><b>Ville</b> {{ville}}</span>
+                        <mat-icon class="s-16 ml-4">location_on</mat-icon>
+                    </div>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Description</div>
+                    <div class="info">{{desc}}</div>
+                </div>
+
+                <div class="info-line">
+                    <div class="title">Téléphone.</div>
+                 
+                        <span>{{tel}}</span> &nbsp;
+                        <mat-icon class="s-16 ml-4">phone</mat-icon>
+                  
+                        
+                </div>
+         
+
+
+            </div>
+
+        </div>
+
+     
+    </div>
+
+
+</div>

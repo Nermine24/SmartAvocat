@@ -1,0 +1,216 @@
+<div class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- CONTENT HEADER -->
+        <div class="header accent p-24" fxLayout="row" fxLayoutAlign="start center">
+            <h2 class="m-0">Full width with inner scroll</h2>
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT TOOLBAR -->
+            <div class="toolbar px-24 py-8">
+                <span>Content toolbar</span>
+            </div>
+            <!-- / CONTENT TOOLBAR -->
+
+            <!-- CONTENT -->
+            <div class="content p-24" fusePerfectScrollbar>
+              <div *ngFor="let post of posts">
+                <mat-card class="example-card"style="border: 1px solid rgb(39, 80, 134); border-radius: 15px;" >
+                    <mat-card-header>
+                      <img mat-card-avatar src="http://localhost:3000/api/client/file/{{post.imageuser}}">
+                      <mat-card-title>{{post.nom}} {{post.prenom}}</mat-card-title>
+                      <mat-card-subtitle>{{post.datepost | date:'longDate'}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <img  style=" display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 50%;" src="http://localhost:3000/api/client/file/{{post.image}}"alt="Photo ">
+                    <mat-card-content>
+                      <p>
+                        {{post.message}}
+                      </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <div fxLayout="row" fxLayoutAlign="start center" *ngIf="isEmptyObject(post.likes) || !check(post.likes)">
+                        <button mat-button class="like-button" (click)="like(post._id)">
+                            <span fxLayout="row" fxLayoutAlign="start center">
+                                <mat-icon color="warn" class="s-16">favorite_border</mat-icon>
+                                <span> &nbsp; j'aime</span>
+                            </span>
+                        </button>
+                    </div>
+    
+    
+                   <div fxLayout="row" fxLayoutAlign="start center"  *ngIf="check(post.likes)">
+            <button mat-button class="like-button" (click)="dislike(post._id)">
+                <span fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon color="warn" class="s-16">favorite</mat-icon>
+                    <span>&nbsp; je n'aime pas</span>
+                </span>
+            </button>
+        </div>
+             &nbsp;
+  <div fxLayout="row" fxLayoutAlign="start center" style="margin-left: 2%;">
+          
+                <span class="like-button" *ngIf="post.likes.length === 0" fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon color="accent" class="s-16">thumb_up</mat-icon>
+                     &nbsp; 0
+                </span>
+    
+                <span class="like-button" *ngIf="post.likes.length === 1" fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon color="accent"class="s-16">thumb_up</mat-icon>
+                     <span>&nbsp; une personne a aimé ce post</span>
+                </span>
+    
+                <span class="like-button" *ngIf="post.likes.length >= 2" fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon color="accent"class="s-16">thumb_up</mat-icon>
+                    <span> &nbsp; {{post.likes.length}}</span>&nbsp; <span>personnes ont aimé ce poste</span>
+                </span>
+    
+        </div>
+
+        <hr>
+
+        <footer class="" fxLayout="column" fxLayoutAlign="start start">
+        
+
+          <div class="comment" fxLayout="row" fxFlexFill *ngFor="let comment of post.comments">
+              <img src="http://localhost:3000/api/client/file/{{comment.imagecomment}}" style="margin-top: 3%;"  class="avatar"/>
+
+              <div fxLayout="column" fxFlex style="border-bottom: 2px solid rgb(39, 80, 134); border-radius: 15px;">
+                  <div fxLayout="row" fxLayoutAlign="start center">
+                      <span style="color: rgb(11, 91, 182);"><strong>{{comment.nom}} {{comment.prenom}}</strong></span>
+                      <span class="time"> &nbsp;&nbsp;{{comment.time | date:'longDate'}}</span>
+                      <span fxFlex></span>
+                      <form [formGroup]="form">
+                      <div class="cont">
+                          <div class="stars" *ngIf="comment.rating === 0 || comment.rating === null" >
+                   
+                            <ngx-star-rating formControlName="rating0" [id]="'rating0'" [disabled]="true">
+      
+                            </ngx-star-rating >
+                        
+                          </div>
+                        
+                        </div>
+                        <div class="cont">
+                          <div class="stars" *ngIf="comment.rating === 1">
+                   
+                            <ngx-star-rating formControlName="rating1" [id]="'rating1'" [disabled]="true">
+      
+                            </ngx-star-rating >
+                        
+                          </div>
+                        
+                        </div>
+                        <div class="cont">
+                          <div class="stars" *ngIf="comment.rating === 2">
+                   
+                            <ngx-star-rating formControlName="rating2" [id]="'rating2'" [disabled]="true">
+      
+                            </ngx-star-rating >
+                        
+                          </div>
+                        
+                        </div>
+                        <div class="cont">
+                          <div class="stars" *ngIf="comment.rating === 3">
+                   
+                            <ngx-star-rating formControlName="rating3" [id]="'rating3'" [disabled]="true">
+      
+                            </ngx-star-rating >
+                        
+                          </div>
+                        
+                        </div>
+                        <div class="cont">
+                          <div class="stars" *ngIf="comment.rating === 4">
+                   
+                            <ngx-star-rating formControlName="rating4" [id]="'rating4'" [disabled]="true">
+      
+                            </ngx-star-rating >
+                        
+                          </div>
+                        
+                        </div>
+                        <div class="cont">
+                          <div class="stars" *ngIf="comment.rating === 5">
+                   
+                            <ngx-star-rating formControlName="rating5" [id]="'rating5'" [disabled]="true">
+      
+                            </ngx-star-rating >
+                        
+                          </div>
+                        
+                        </div>
+                      </form>
+                      <button mat-icon-button *ngIf="comment.userid === idu" (click)="deletecomment(comment,post._id)">
+                          <mat-icon color="warn">delete</mat-icon>
+                      </button>
+                  </div>
+                  <div class="message">
+                      <b>{{comment.message}}</b>
+                  </div>
+              <br>
+              </div>
+          </div>
+
+          <div class="reply" fxLayout="row" fxFlexFill >
+              <img src="http://localhost:3000/api/client/file/{{image}}" style="margin-top: 6%;" class="avatar"/>
+
+              <form fxFlex name="commentForm" [formGroup]="commentForm" >
+                  <div class="cont">
+                      <div class="stars">
+
+                        <ngx-star-rating formControlName="rate" [id]="'rating3'" >
+  
+                        </ngx-star-rating >
+                    
+                      </div>
+                    
+                    </div>
+                  <textarea formControlName="message" style="	width: 100%;
+         height: 70px;
+                  border: 1px solid #cccccc;
+                  padding: 5px;
+                  font-family: Tahoma, sans-serif;
+                  border-radius: 5px;
+                  background-position: bottom right;
+                  background-repeat: no-repeat;"  placeholder="Ajouter un commentaire..."></textarea>
+                  <button mat-raised-button color="accent" (click)="addcomment(post._id)" class="post-comment-button" aria-label="Post Comment">
+                      Poster un commentaire ...
+                  </button>
+              </form>
+          </div>
+      </footer>
+     
+
+                    </mat-card-actions>
+                
+   
+                 
+                  </mat-card>
+                  <br><br>
+          </div>
+
+            </div>
+            
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

@@ -1,0 +1,226 @@
+<div id="timeline" class="p-24" fxLayout="row wrap">
+
+    <div class="timeline-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-md="100">
+
+        <div class="profile-box add-post" *ngIf="verifz">
+            <form name="postForm" [formGroup]="postForm" novalidate>
+            <div class="form" fxFlex>
+
+                <textarea formControlName="message" placeholder="Écris quelque chose.."></textarea>
+                <input hidden type="file" #fileinput  (change)="fileInputChange($event)"/>
+                <footer fxLayout="row" fxLayoutAlign="space-between center">
+
+                    <div fxLayout="row" fxLayoutAlign="start center">
+
+                        <button mat-icon-button aria-label="Add photo" (click)="fileinput.click()" matTooltip="Add Photo">
+                            <mat-icon>photo</mat-icon>
+                        </button>
+
+                        <button mat-icon-button aria-label="Mention somebody" matTooltip="Mention somebody">
+                            <mat-icon>person</mat-icon>
+                        </button>
+
+                        <button mat-icon-button aria-label="Add location" matTooltip="Add location">
+                            <mat-icon>location_on</mat-icon>
+                        </button>
+
+                    </div>
+
+                    <button mat-raised-button color="accent" (click)="onSubmit()" class="post-button"   aria-label="POST">PUBLIER</button>
+
+                </footer>
+
+            </div>
+          </form>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="timeline-item" *ngFor="let post of posts">
+
+            <header fxLayout="row" fxLayoutAlign="space-between start">
+                <div class="user" fxLayout="row" fxLayoutAlign="start center">
+                    <img class="avatar" src="http://localhost:3000/api/client/file/{{post.imageuser}}">
+
+                    <div fxLayout="column">
+                        <div class="title">
+                            <span class="username">{{post.nom}} {{post.prenom}}</span>
+                         
+                        </div>
+                        <div class="time">{{post.datepost | date:'longDate'}}</div>
+                    </div>
+                </div>
+
+
+
+                <button *ngIf="verifz" mat-icon-button aria-label="More" (click)="deletepost(post._id)">
+                    <mat-icon color="warn">delete</mat-icon>
+                </button>
+            </header>
+
+            <div class="content">
+                <div *ngIf="post.message" class="message">
+                    {{post.message}}
+                </div>
+
+                <div *ngIf="post.image" class="media">
+                    <img  src="http://localhost:3000/api/client/file/{{post.image}}">
+                </div>
+
+      
+
+            
+                <div fxLayout="row" fxLayoutAlign="start center" *ngIf="isEmptyObject(post.likes) || !check(post.likes)">
+                    <button mat-button class="like-button" (click)="like(post._id)">
+                        <span fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon color="warn" class="s-16">favorite_border</mat-icon>
+                            <span>j'aime</span>
+                        </span>
+                    </button>
+                </div>
+
+
+               <div fxLayout="row" fxLayoutAlign="start center"  *ngIf="check(post.likes)">
+        <button mat-button class="like-button" (click)="dislike(post._id)">
+            <span fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon color="warn" class="s-16">favorite</mat-icon>
+                <span>je n'aime pas</span>
+            </span>
+        </button>
+    </div>
+         
+    <div fxLayout="row" fxLayoutAlign="start center" >
+      
+            <span class="like-button" *ngIf="post.likes.length === 0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon color="accent" class="s-16">thumb_up</mat-icon>
+                 &nbsp; 0
+            </span>
+
+            <span class="like-button" *ngIf="post.likes.length === 1" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon color="accent"class="s-16">thumb_up</mat-icon>
+                 <span>une personne a aimé ce post</span>
+            </span>
+
+            <span class="like-button" *ngIf="post.likes.length >= 2" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon color="accent"class="s-16">thumb_up</mat-icon>
+                <span>{{post.likes.length}}</span>&nbsp; <span>personnes ont aimé ce poste</span>
+            </span>
+
+    </div>
+  
+
+
+
+            </div>
+
+            <footer class="" fxLayout="column" fxLayoutAlign="start start">
+        
+
+                <div class="comment" fxLayout="row" fxFlexFill *ngFor="let comment of post.comments">
+                    <img src="http://localhost:3000/api/client/file/{{comment.imagecomment}}" style="margin-top: 3%;"  class="avatar"/>
+
+                    <div fxLayout="column" fxFlex>
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <span style="color: rgb(11, 91, 182);">{{comment.nom}} {{comment.prenom}}</span>
+                            <span class="time"> &nbsp;&nbsp;{{comment.time | date:'longDate'}}</span>
+                            <span fxFlex></span>
+                            <form [formGroup]="form">
+                            <div class="cont">
+                                <div class="stars" *ngIf="comment.rating === 0 || comment.rating === null" >
+                         
+                                  <ngx-star-rating formControlName="rating0" [id]="'rating0'" [disabled]="true">
+            
+                                  </ngx-star-rating >
+                              
+                                </div>
+                              
+                              </div>
+                              <div class="cont">
+                                <div class="stars" *ngIf="comment.rating === 1">
+                         
+                                  <ngx-star-rating formControlName="rating1" [id]="'rating1'" [disabled]="true">
+            
+                                  </ngx-star-rating >
+                              
+                                </div>
+                              
+                              </div>
+                              <div class="cont">
+                                <div class="stars" *ngIf="comment.rating === 2">
+                         
+                                  <ngx-star-rating formControlName="rating2" [id]="'rating2'" [disabled]="true">
+            
+                                  </ngx-star-rating >
+                              
+                                </div>
+                              
+                              </div>
+                              <div class="cont">
+                                <div class="stars" *ngIf="comment.rating === 3">
+                         
+                                  <ngx-star-rating formControlName="rating3" [id]="'rating3'" [disabled]="true">
+            
+                                  </ngx-star-rating >
+                              
+                                </div>
+                              
+                              </div>
+                              <div class="cont">
+                                <div class="stars" *ngIf="comment.rating === 4">
+                         
+                                  <ngx-star-rating formControlName="rating4" [id]="'rating4'" [disabled]="true">
+            
+                                  </ngx-star-rating >
+                              
+                                </div>
+                              
+                              </div>
+                              <div class="cont">
+                                <div class="stars" *ngIf="comment.rating === 5">
+                         
+                                  <ngx-star-rating formControlName="rating5" [id]="'rating5'" [disabled]="true">
+            
+                                  </ngx-star-rating >
+                              
+                                </div>
+                              
+                              </div>
+                            </form>
+                            <button mat-icon-button *ngIf="comment.userid === idu" (click)="deletecomment(comment,post._id)">
+                                <mat-icon color="warn">delete</mat-icon>
+                            </button>
+                        </div>
+                        <div class="message">
+                            <b>{{comment.message}}</b>
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <div class="reply" fxLayout="row" fxFlexFill>
+                    <img src="http://localhost:3000/api/client/file/{{image}}" style="margin-top: 8%;" class="avatar"/>
+
+                    <form fxFlex name="commentForm" [formGroup]="commentForm" >
+                        <div class="cont">
+                            <div class="stars">
+
+                              <ngx-star-rating formControlName="rate" [id]="'rating3'" >
+        
+                              </ngx-star-rating >
+                          
+                            </div>
+                          
+                          </div>
+                        <textarea formControlName="message"  placeholder="Ajouter un commentaire..."></textarea>
+                        <button mat-raised-button color="accent" (click)="addcomment(post._id)" class="post-comment-button" aria-label="Post Comment">
+                            Poster un commentaire ...
+                        </button>
+                    </form>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+   
+</div>
+

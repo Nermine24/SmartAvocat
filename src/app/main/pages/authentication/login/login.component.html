@@ -1,0 +1,175 @@
+<div id="login" fxLayout="column">
+
+    <div id="login-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+        <div id="login-form" [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+
+       
+
+            <div class="title">Créez votre profile</div>
+
+            <form name="loginForm" [formGroup]="loginForm" novalidate>
+
+
+      
+                <div fxLayout="row" >
+                    <div fxFlex="40" class="pr-4" >
+
+                        <div class="file-uploader" fxLayoutAlign="center center">
+                            <mat-label>Photo</mat-label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input hidden type="file" #fileinput  (change)="fileInputChange($event)"/>
+                     
+                            <button mat-mini-fab
+                                    color="accent"
+                                    (change)="fileInputChange($event)" 
+                                    class="add-file-button"
+                                    (click)="fileinput.click()"
+                                    aria-label="Add file"
+                                    [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                             <img style="height: 70px; margin-left: 70px;" class="border shadow m-2 p-2" src="{{ defaultImage }}" (click)="fileinput.click()" />
+                             <br>   <br>
+                            
+                            
+                             <div *ngIf="size">
+                               
+                                    <mat-hint color="warm">taille maximale 500 ko</mat-hint>
+                             
+                              
+                              </div>
+                              <div *ngIf="verif">
+
+                                <mat-hint color="warm"> Photo est obligatoire
+                                </mat-hint>
+                             
+                              </div>
+                        </div> 
+                    </div>
+ 
+
+                    <mat-form-field appearance="outline" fxFlex="30" class="pr-4">
+                        <mat-label>Nom</mat-label>
+                        <input matInput formControlName="nom" required >
+                        <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                        <mat-error *ngIf="loginForm.hasError('required', 'nom')">Nom est requis</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" fxFlex="30" class="pl-4">
+                        <mat-label>Prénom</mat-label>
+                        <input matInput required formControlName="prenom">
+                        <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                        <mat-error *ngIf="loginForm.hasError('required', 'prenom')">Prénom est requis</mat-error>
+                    </mat-form-field>
+
+                </div>
+
+
+
+                <div fxLayout="row" >
+
+                    <mat-form-field appearance="outline" fxFlex="20" class="pr-4">
+                        <mat-label>Pays</mat-label>
+                        <mat-select formControlName="country" (selectionChange)="selectCities(loginForm.value.country)">
+                            <mat-option *ngFor="let country of countries" value="{{country}}">{{country}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="loginForm.hasError('required', 'country')">Pays est requis</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" fxFlex="30" class="pr-4">
+                        <mat-label>Ville</mat-label>
+                        <mat-select formControlName="city">
+                          <mat-option *ngFor="let city of cities" value="{{city}}">{{city}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="loginForm.hasError('required', 'city')">Ville est requis</mat-error>
+                    </mat-form-field>
+
+
+
+                   
+
+
+                    <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+                        <mat-label>Date de naissance</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="daten">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker touchUi #picker></mat-datepicker>
+                        <mat-error *ngIf="loginForm.hasError('required', 'daten')">Date de naissance est requis</mat-error>
+                    </mat-form-field>
+
+                </div>
+
+                <div fxLayout="row" >
+
+                    <mat-form-field appearance="outline" fxFlex="25" class="pr-4">
+                        <mat-label>Genre</mat-label>
+                        <mat-select formControlName="sexe">
+                            <mat-option  value="Homme">Homme</mat-option>
+                            <mat-option  value="Femme">Femme</mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="loginForm.hasError('required', 'sexe')">Genre est requis</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" fxFlex="25" class="pr-4">
+                        <mat-label>Domaine</mat-label>
+                        <mat-select formControlName="domaine">
+                            <mat-option  value="Droit des Personnes">Droit des Personnes</mat-option>
+                            <mat-option  value="Droit Pénal">Droit Pénal</mat-option>
+                            <mat-option  value="Droit Immobilier">Droit Immobilier</mat-option>
+                            <mat-option  value="Droit Rural">Droit Rural</mat-option>
+                            <mat-option  value="Droit de l'environnement">Droit de l'environnement</mat-option>
+                            <mat-option  value="Droit Public">Droit Public</mat-option>
+                            <mat-option  value="Droit de la propiriété intelectuelle">Droit de la propiriété intelectuelle</mat-option>
+                            <mat-option  value="Droit Commercial">Droit Commercial</mat-option>
+                            <mat-option  value="Droit des Sociétés">Droit des Sociétés</mat-option>
+                            <mat-option  value="Droit Fiscal">Droit Fiscal</mat-option>
+                            <mat-option  value="Droit Social">Droit Social</mat-option>
+                            <mat-option  value="Droit économique">Droit économique</mat-option>
+                            <mat-option  value="Droit Communautaire">Droit Communautaire</mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="loginForm.hasError('required', 'domaine')">domaine est requis</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+                        <mat-label>Téléphone</mat-label>
+                        <ngx-mat-intl-tel-input formControlName="phone" [enablePlaceholder]="true" [enableSearch]="true"
+                        name="phone" #phone>
+                    </ngx-mat-intl-tel-input>
+                    <mat-hint>eg : {{phone.selectedCountry.placeHolder}}</mat-hint>
+                    <mat-error *ngIf="loginForm.hasError('required', 'phone')">Téléphone est requis</mat-error>
+                    </mat-form-field>
+
+                </div>
+      
+
+
+                <div fxLayout="row" >
+
+                    <mat-form-field appearance="outline" fxFlex="100" class="pr-4">
+                        <mat-label>Description</mat-label>
+                        <input matInput required formControlName="description">
+                        <mat-error *ngIf="loginForm.hasError('required', 'description')">Description est requis</mat-error>
+                       
+                    </mat-form-field>
+
+
+                </div>
+
+
+                <button mat-raised-button color="accent" (click)="onSubmit()" class="submit-button" aria-label="LOG IN"
+                        [disabled]="loginForm.invalid">
+                        Créer
+                </button>
+                <div class="terms" fxLayout="row" fxLayoutAlign="center center">
+               
+                    <span style="color: red;">{{errorMessage}}</span>
+                </div>
+            </form>
+
+
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,96 @@
+<div id="cards" class="page-layout simple fullwidth">
+
+    <!-- HEADER -->
+    <div class="header accent p-24 h-160" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <div fxLayout="column" fxLayoutAlign="center start">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-18">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">User Interface</span>
+            </div>
+            <div class="h2 mt-16">Nos Avocats</div>
+        </div>
+
+
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content" >
+
+        <div class="cards">
+
+
+
+
+            <!-- CARD 17 -->
+            <div *ngFor="let a of avocat" class="card">
+
+                <!-- PREVIEW -->
+                <div class="card-preview">
+
+                    <div class="fuse-card">
+
+                        <div class="p-16" fxLayout="row" fxLayoutAlign="start center">
+                            <img class="w-40 h-40 border-radius-100" src="http://localhost:3000/api/avocat/file/{{a.image}}">
+
+                            <div class="ml-16">
+                                <div class="text-bold">{{a.nom}} {{a.prenom}}</div>
+                                <div class="h5 text-bold secondary-text">{{a.city}}</div>
+                            </div>
+                        </div>
+
+                        <img src="assets/images/cards/30490.jpg">
+
+                        <div class="p-16">
+                            <div class="h1">{{a.domaine}}</div>
+                            <div class="h4 secondary-text">{{a.email}}</div>
+                        </div>
+                        <div  class="p-16">
+                        <div class="h5 secondary-text">
+                            <div  fxLayout="row" fxLayoutAlign="start center">
+
+                                <mat-icon *ngFor="let n of numSequence(5)" class="s-16 amber-fg">star</mat-icon>
+                                <div class="ml-8 secondary-text">{{a.note}}</div>
+                                <div class="ml-4 secondary-text">(51)</div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="p-16 pt-0 line-height-1.75">
+                            {{a.description}}
+
+
+
+
+
+                        </div>
+                        <div class="p-16 pt-0 line-height-1.75">
+
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <button mat-raised-button matStepperNext onclick="" type="button" (click)="onsubmit(a.userid)" color="accent">
+                                    Profil
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- / PREVIEW -->
+
+
+
+            </div>
+            <!-- / CARD 17 -->
+
+
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

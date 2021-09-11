@@ -1,0 +1,204 @@
+<div class="page-layout simple left-sidebar">
+
+    <!-- SIDEBAR -->
+    <fuse-sidebar class="sidebar" name="simple-left-sidebar-1" position="left" lockedOpen="gt-md">
+
+        <!-- SIDEBAR CONTENT -->
+        <div class="content p-24">
+            <form class="" fxLayout="column" fxLayoutAlign="start"
+             name="form" [formGroup]="form">
+
+
+      
+             <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+            
+
+                    <div class="file-uploader" fxLayoutAlign="center center">
+                        <mat-label>Photo</mat-label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input hidden type="file" #fileinput formControlName="fileinput"  (change)="fileInputChange($event)"/>
+                 
+                        <button mat-mini-fab
+                                color="accent"
+                                (change)="fileInputChange($event)" 
+                                class="add-file-button"
+                                (click)="fileinput.click()"
+                                aria-label="Add file"
+                                [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+                            <mat-icon>add</mat-icon>
+                        </button>
+  
+                        
+                
+                    </div> 
+                </div>
+         
+<br> 
+          <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+              <mat-form-field appearance="outline" fxFlex="100">
+                  <mat-label>Nom</mat-label>
+                  <input matInput formControlName="nom" placeholder="Nom du groupe" required>
+              </mat-form-field>
+
+          </div>
+
+
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+              <mat-form-field appearance="outline" fxFlex="100">
+                  <mat-label>Description</mat-label>
+                  <textarea matInput formControlName="desc" expand_more required>
+                
+                  </textarea>
+              </mat-form-field>
+
+          
+
+          </div>
+
+
+          <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+              <mat-form-field appearance="outline" fxFlex="100" required>
+                  <mat-label>Catégorie</mat-label>
+                  <mat-select formControlName="cat">
+                    <mat-option  value="Droit des Personnes">Droit des Personnes</mat-option>
+                    <mat-option  value="Droit Pénal">Droit Pénal</mat-option>
+                    <mat-option  value="Droit Immobilier">Droit Immobilier</mat-option>
+                    <mat-option  value="Droit Rural">Droit Rural</mat-option>
+                    <mat-option  value="Droit de l'environnement">Droit de l'environnement</mat-option>
+                    <mat-option  value="Droit Public">Droit Public</mat-option>
+                    <mat-option  value="Droit de la propiriété intelectuelle">Droit de la propiriété intelectuelle</mat-option>
+                    <mat-option  value="Droit Commercial">Droit Commercial</mat-option>
+                    <mat-option  value="Droit des Sociétés">Droit des Sociétés</mat-option>
+                    <mat-option  value="Droit Fiscal">Droit Fiscal</mat-option>
+                    <mat-option  value="Droit Social">Droit Social</mat-option>
+                    <mat-option  value="Droit économique">Droit économique</mat-option>
+                    <mat-option  value="Droit Communautaire">Droit Communautaire</mat-option>
+                  </mat-select>
+                  <mat-icon matSuffix class="secondary-text">account_balance</mat-icon>
+           
+              </mat-form-field>
+
+          </div>
+          
+
+          <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+            <mat-form-field appearance="outline" fxFlex="100" required>
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="type">
+                  <mat-option  value="Public">Public</mat-option>
+                  <mat-option  value="Privé">Privé</mat-option>
+             
+                </mat-select>
+                <mat-icon matSuffix class="secondary-text">security</mat-icon>
+         
+            </mat-form-field>
+
+        </div>
+
+        <button mat-raised-button
+        color="accent"
+  
+        class="add-file-button"
+        (click)="onSubmit()"
+        aria-label="Add file"
+        [disabled]="form.invalid"
+        [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+    <mat-icon>add</mat-icon> Créer groupe
+</button>
+      </form>
+
+
+        </div>
+        <!-- / SIDEBAR CONTENT -->
+
+    </fuse-sidebar>
+    <!-- / SIDEBAR -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent p-24" fxLayout="row" fxLayoutAlign="start center">
+
+
+            <h2 class="m-0">Aperçu bureau</h2>
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT -->
+        <div class="content p-24">
+            <div class="container">
+                <div class="container-head">
+               
+                </div>
+            <div class="container-body">
+                    <div class="profile-picture"> 
+                    <img class="profile-image avatar huge" src="{{ defaultImage }}">
+                </div>
+                <div class="name">
+                  <strong>  <p>{{form.getRawValue().nom}}</p></strong>
+                </div>
+                <div class="location">
+                    <p>      {{form.getRawValue().cat}}</p>
+                </div>
+                <div class="location">
+                    <p>      {{form.getRawValue().type}}</p>
+                </div>
+                <div class="bio">
+                    <p>      {{form.getRawValue().desc}}</p>
+                </div>
+          
+                <div class="stats">
+                    <div class="followers">
+                        <p>Abonnés</p>
+                        <h1>1</h1>
+                    </div>
+                    <div class="following">
+                        <p>Publication</p>
+                        <h1>0</h1>
+                    </div>
+                    <div class="topics">
+                        <p>LES SUJETS</p>
+                        <h1>0</h1>
+                    </div>
+                 
+                    
+    
+                </div>
+                <div class="buttons">
+                    <button mat-raised-button
+                    color="accent"
+                 
+                    class="add-file-button"
+                   
+                    aria-label="Add file"
+                    [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+                <mat-icon>bookmark</mat-icon>
+          suivre  </button>&nbsp;&nbsp;
+            <button mat-raised-button
+            color="accent"
+        
+            class="add-file-button"
+           
+            aria-label="Add file"
+            
+            [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+            <mat-icon>mail</mat-icon>
+  Message  </button>
+                    </div>
+            </div>
+        
+ 
+        </div>
+        <!-- / CONTENT -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

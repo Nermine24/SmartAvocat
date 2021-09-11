@@ -1,0 +1,55 @@
+<div id="search-modern" class="page-layout simple fullwidth">
+
+    <!-- HEADER -->
+    <div class="header accent p-24" fxLayout="row" fxLayoutAlign="start center">
+
+        <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="start center">
+
+            <div class="search" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon>search</mat-icon>
+                <input placeholder="Search"  [(ngModel)]="searchText"fxFlex>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-24">
+
+        <div class="result-info" fxLayout="row" fxLayoutAlign="start center">
+
+            <span class="result-count h3 secondary-text">
+                <span>{{groups.length}}</span>
+                <span class="ml-4">Groupe(s) trouvé</span>
+            </span>
+            
+        </div>
+
+        <div class="results">
+
+            <div class="result-item" *ngFor="let item of groups | filter: searchText">
+                <div fxLayout="row" >
+                <img class="avatar"  src="http://localhost:3000/api/client/file/{{item.image}}">
+                <div class="title blue-800-fg">{{item.nom}}
+                    <br> <span style="color: black;">     {{item.desc}}</span>
+               
+                </div>
+                    <span fxFlex></span>
+                    <div>
+                        <button (click)="go(item._id)"  mat-mini-fab >
+                            <mat-icon>arrow_forward</mat-icon>
+                          </button>
+                    </div>
+  
+            </div>
+
+       
+
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

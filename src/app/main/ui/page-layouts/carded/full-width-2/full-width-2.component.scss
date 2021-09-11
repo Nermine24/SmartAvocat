@@ -1,0 +1,56 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  border: 55px solid #000;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+footer {
+  padding: 16px;
+  input.star:checked ~ label.star:before {
+    color: gold !important;
+  }
+
+  label.star:before {
+    font-size: 1.4rem;
+  }
+
+  div.stars {
+    width: auto !important;
+  }
+  .comment-count {
+    margin-bottom: 16px;
+    cursor: pointer;
+
+    mat-icon {
+      margin-left: 8px;
+    }
+  }
+
+  .comment {
+    margin-bottom: 24px !important;
+
+    .username {
+      font-weight: 600;
+      margin-right: 4px;
+    }
+
+    .actions {
+      margin-top: 8px;
+
+      .reply-button {
+        margin-right: 16px;
+        cursor: pointer;
+      }
+
+      .report-button {
+        margin: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}

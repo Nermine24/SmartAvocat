@@ -1,0 +1,95 @@
+
+
+<div fxLayout="row" fxLayoutAlign="start center"  >
+
+    <mat-icon class="handle mr-16" fxHide.xs>
+        drag_handle
+    </mat-icon>
+
+
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex>
+
+        <div class="info" fxFlex fxFlexLayout="column">
+
+            <div class="title">
+                {{todo.title}}
+            </div>
+
+        
+            
+  
+
+        </div>
+
+        <div class="actions" fxLayout="row" fxLayoutAlign="start center">
+
+            <button mat-icon-button   *ngIf="todo.id === '561551bd7fe2ff461101c192'" 
+                    >
+                <mat-icon style="color: green;">done_all</mat-icon>
+            </button>
+
+            <button mat-icon-button   *ngIf="todo.id === '561551bd4ac1e7eb77a3a750' && rrdvv" 
+                    >
+                <mat-icon style="color: green;">done_all</mat-icon>
+            </button>
+  
+            <button mat-icon-button *ngIf="todo.id === '561551bd4ac1e7eb77a3a750' && !rrdvv" 
+            >
+        <mat-icon color="warn">cancel</mat-icon>
+    </button>
+
+    <button mat-icon-button   *ngIf="todo.id === '561551bd917bfec2ddef2d49' && pm" 
+    >
+<mat-icon style="color: green;">done_all</mat-icon>
+</button>
+
+<button mat-icon-button *ngIf="todo.id === '561551bd917bfec2ddef2d49' && !pm" 
+>
+<mat-icon color="warn">cancel</mat-icon>
+</button>
+
+
+
+
+<button mat-raised-button color="primary" (click)="add()" *ngIf="todo.id === '561551bdeeb2fd6877e18c29' && pm && rrdvv && avocatr" >
+    Terminer
+</button>
+
+
+
+            <button mat-icon-button    *ngIf="todo.id === '561551bd7fe2ff461101c192'"  >
+              <mat-icon color="accent">arrow_forward</mat-icon>
+        </button>
+        <button mat-icon-button *ngIf="todo.id === '561551bd4ac1e7eb77a3a750'" >
+           <mat-icon color="accent">arrow_back</mat-icon>
+         </button>
+         <button mat-icon-button *ngIf="todo.id === '561551bdeeb2fd6877e18c29'" >
+           <mat-icon color="accent">verified_user</mat-icon>
+         </button>
+         
+            <button mat-icon-button *ngIf="todo.id === '561551bd917bfec2ddef2d49'"
+            >
+             <mat-icon color="accent">payment</mat-icon>
+            </button>
+            <button mat-raised-button *ngIf="todo.id === '561551bd917bfec2ddef2d49' && !pm && clientr" (click)="pay()" >
+          payer
+    </button>
+          
+        </div>
+
+    </div>
+    
+ 
+
+</div>
+<br>
+<div  *ngIf="todo.id === '561551bd917bfec2ddef2d49' && payer" >
+<ngx-stripe-card
+[stripe]="stripe"
+[options]="cardOptions"
+[elementsOptions]="elementsOptions"
+></ngx-stripe-card><br>
+<button type="submit" mat-raised-button color="accent"  (click)="createToken()">
+Payer 50DT
+</button></div>

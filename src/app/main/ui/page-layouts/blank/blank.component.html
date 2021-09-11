@@ -1,0 +1,79 @@
+<div class="page-layout blank fullwidth" fusePerfectScrollbar>
+
+            
+            <div class="container">
+                <div class="container-head">
+               
+                </div>
+            <div class="container-body">
+                    <div class="profile-picture"> 
+                    <img  src="http://localhost:3000/api/client/file/{{image}}">
+                </div>
+                <div class="name">
+                    <p>{{ nom }}</p>
+                </div>
+                <div class="location">
+                    <p>{{type}}</p>
+                </div>
+                <div class="location">
+                    <p>{{desc}}</p>
+                </div>
+                <div class="bio">
+                    <p>{{cat}}</p>
+                </div>
+                <div class="stats">
+                    <div class="followers">
+                        <p>Abonnés</p>
+                        <h1>{{like}}</h1>
+                    </div>
+                    <div class="following">
+                        <p>Publication</p>
+                        <h1>0</h1>
+                    </div>
+                    <div class="topics">
+                        <p>LES SUJETS</p>
+                        <h1>0</h1>
+                    </div>
+                 
+                    
+    
+                </div>
+                
+                <div class="buttons">
+                    <button mat-raised-button
+                    color="warn"
+                 
+                    class="add-file-button"
+                    *ngIf="check(likes)"
+                    aria-label="Add file"
+            >
+                <mat-icon>bookmark</mat-icon>
+          Quitter le groupe   </button>
+          <button mat-raised-button
+          color="accent"
+       
+          class="add-file-button"
+          *ngIf="isEmptyObject(likes) || !check(likes)"
+          aria-label="Add file"
+          >
+      <mat-icon>bookmark</mat-icon>
+Rejoindre  </button>&nbsp;&nbsp;
+            <button mat-raised-button
+            color="accent"
+        
+            class="add-file-button"
+           
+            aria-label="Add file"
+            
+            [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}">
+            <mat-icon>mail</mat-icon>
+  Message  </button>
+                    </div>
+            </div>
+        
+ 
+    
+    
+     
+
+</div>

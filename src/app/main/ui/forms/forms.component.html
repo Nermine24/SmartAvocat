@@ -1,0 +1,102 @@
+<div id="forms" class="page-layout simple fullwidth" fxLayout="column">
+
+    <!-- HEADER -->
+    <div class="header accent p-24 h-160" fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column" fxLayoutAlign="center start">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-18">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">User Interface</span>
+            </div>
+            <div class="h1 mt-16">Réservation</div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content p-24">
+
+        <div class="h1">
+            Demande de Rendez-Vous
+            <div class="jumbotron p-4">
+                <div class="container text-center">
+                    <alert></alert>
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+
+        <p class="pt-16 pb-32">
+            Veuillez remplir les champs ci-dessous pour pouvoir faire une demande de rendez-vous.
+        </p>
+
+        <div class="mb-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-md="row">
+
+            <!-- REACTIVE FORM EXAMPLE -->
+
+            <form class="mat-card mat-elevation-z4 p-24 mr-24" fxLayout="column" fxLayoutAlign="start"
+                  fxFlex="1 0 auto" name="form" >
+
+
+                <div class="h2 mb-24">Demande de rendez-vous</div>
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                    <mat-form-field appearance="outline" fxFlex="100">
+                        <mat-label>Company (disabled)</mat-label>
+                        <input matInput >
+                        <mat-icon matSuffix class="disabled-text">domain</mat-icon>
+                    </mat-form-field>
+
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                    <mat-form-field appearance="outline" fxFlex="50" class="pr-4" disabled="true">
+                        <mat-label >Nom</mat-label>
+                        <input matInput required>
+                        <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                        <mat-error>Nom requis!</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+                        <mat-label>Prénom</mat-label>
+                        <input matInput required>
+                        <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                        <mat-error>Prénom requis!</mat-error>
+                    </mat-form-field>
+
+                </div>
+
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+                    <mat-form-field appearance="outline" fxFlex="100">
+                        <mat-label>Brève description de votre problème</mat-label>
+                        <textarea matInput id="sujet"  required [(ngModel)]="rdv.sujet" name="sujet">
+                        </textarea>
+                        <mat-error>Champ Description obligatoire!</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <button mat-raised-button type="button" color="accent" type="submit" (click)="saveRdv()">
+                        Finir
+                    </button>
+                </div>
+
+
+
+            </form>
+
+            <!-- / REACTIVE FORM EXAMPLE -->
+
+
+        </div>
+
+
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>
+
+
